@@ -1,5 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<% @article.photos.each do |p| %>
+  <%= cl_image_tag p.key, height: 300, width: 400, crop: :fill  %>
+<% end %>
+
 <%= render @article %>
 
 <div>
