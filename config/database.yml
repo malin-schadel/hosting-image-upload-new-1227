@@ -14,16 +14,36 @@
 # Configure Using Gemfile
 # gem "pg"
 #
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
 
 development:
   <<: *default
-  database: hosting_image_upload_new_1227_development
+  database: rails-watch-list_development
+
+test:
+  <<: *default
+  database: rails-watch-list_test
+
+production:
+  <<: *default
+  database: hosting_image_upload_new_1227_production
+  username: hosting_image_upload_new_1227
+  password: <%= ENV["HOSTING_IMAGE_UPLOAD_NEW_1227_DATABASE_PASSWORD"] %>
+
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # https://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+# development:
+#   <<: *default
+#   database: hosting_image_upload_new_1227_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
